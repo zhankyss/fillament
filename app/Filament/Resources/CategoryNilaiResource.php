@@ -23,7 +23,8 @@ class CategoryNilaiResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationTitle = 'Category Nilai'; // ngerubah title navigation 
+    // protected static ?string $navigationTitle = 'Category Nilai'; // ngerubah title navigation 
+    protected static ?string $navigationLabel = 'Category Nilai'; // ngerubah title navigation dan label 
 
     public static function form(Form $form): Form
     {
