@@ -2,7 +2,7 @@
 
 return [
 
-    'title' => 'Dasbor',
+    'title' => 'Beranda', // menggati kata buat dashboard menjadi beranda  
 
     'actions' => [
 
