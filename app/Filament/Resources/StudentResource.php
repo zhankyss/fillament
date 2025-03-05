@@ -109,4 +109,15 @@ class StudentResource extends Resource
             'edit' => Pages\EditStudent::route('/{record}/edit'),
         ];
     }
+
+    public static function getlabel(): ?string
+    {
+        $locale = app()->getLocale();
+
+        if ($locale == 'id')
+        {
+            return 'Siswa';
+        }else
+            return 'Student';
+    }
 }
