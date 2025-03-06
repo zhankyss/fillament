@@ -8,6 +8,8 @@ use App\Models\Teacher;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+
+use function Laravel\Prompts\table;
 use function Laravel\Prompts\text;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Textarea;
@@ -20,6 +22,8 @@ use App\Filament\Resources\TeacherResource\Pages;
 
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\TeacherResource\RelationManagers;
+use App\Filament\Resources\TeacherResource\RelationManagers\ClassRoomRelationManager;
+use Filament\Tables\View\TablesRenderHook;
 
 class TeacherResource extends Resource
 {
@@ -38,9 +42,9 @@ class TeacherResource extends Resource
                         TextInput::make('nip'),
                         Textarea::make('address'),
                         FileUpload::make('profile')
-                            ->directory('teachers'), 
+                            ->directory('teachers'),
                     ])->columns(2)
-                
+
             ]);
     }
 
@@ -58,7 +62,10 @@ class TeacherResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -70,7 +77,7 @@ class TeacherResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ClassRoomRelationManager::class,
         ];
     }
 
